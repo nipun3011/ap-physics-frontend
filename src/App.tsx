@@ -1,24 +1,46 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+// import './index.css';
+import Homepage from './pages/homepage'
+import Chatbot from './pages/chatbots'
+import Chat from './pages/chat-page'
+import Summary from './pages/summary'
+import Questionnare from './pages/questionnare'
+
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Homepage />,
+    children: [
+      {
+        path: '/chats',
+        element: <Chatbot/>,
+        children: [
+          {
+            path: '/chats/:chatId',
+            element: <Chat/>,
+          }
+        ],
+      },
+      {
+        path: '/questionnaire',
+        element: <Questionnare/>,
+      },
+      {
+        path: '/summary',
+        element: <Summary/>,
+      },
+    ],
+  },
+  
+]);
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='app'>
+      <h1 className="title">AP Physics</h1>
+      <RouterProvider router={router} />
     </div>
   );
 }
