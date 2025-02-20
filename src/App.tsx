@@ -6,6 +6,7 @@ import Chatbot from './pages/chatbots'
 import Chat from './pages/chat-page'
 import Summary from './pages/summary'
 import Questionnare from './pages/questionnare'
+import Solver from './pages/question-solving'
 
 
 const router = createBrowserRouter([
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
         path: '/summary',
         element: <Summary/>,
       },
+      {
+        path: '/qs/:quesID',
+        element: <Solver/>
+      }
     ],
   },
   
