@@ -86,7 +86,7 @@ const Dialogs = ({ chatId }: { chatId: string }) => {
     const [dialogs, setDialogs] = useState<Response>();
 
     useEffect(() => {
-        fetch(`http://192.168.11.79:8000/get-chat/${chatId}`)
+        fetch(`http://localhost:8000/get-chat/${chatId}`)
             .then((response) => response.json())
             .then((data) => {
                 setLoading(false);

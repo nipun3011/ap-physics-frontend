@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
-import { TbCardsFilled } from "react-icons/tb";
-import { RiRobot3Fill,RiQuestionnaireFill } from "react-icons/ri";
-import { IconContext } from "react-icons";
+import ForumIcon from '@mui/icons-material/Forum';
+import QuizIcon from '@mui/icons-material/Quiz';
+import SummarizeIcon from '@mui/icons-material/Summarize';
 import '../index.css';
+import Navbar from '../components/Navbar';
 
 type ButtonProps = {
   name: string;
@@ -17,23 +18,17 @@ const Tab = ({ name, page, currPage }: ButtonProps) => {
     switch (name) {
       case "Chats":
         return (
-          <IconContext.Provider value={{size: "2.3em" }}>
-            <RiRobot3Fill className='icons'/>
-          </IconContext.Provider>
+          <ForumIcon fontSize='large' />
         );
       case "Questionnaire":
-        return(<IconContext.Provider value={{size: "2.5em" }}>
-          <RiQuestionnaireFill className='icons'/>
-        </IconContext.Provider>) ;
+        return (<QuizIcon fontSize='large' />);
       default:
-        return(<IconContext.Provider value={{size: "2.5em" }}>
-          <TbCardsFilled className='icons'/>
-        </IconContext.Provider>);
+        return (<SummarizeIcon fontSize='large' />);
     }
   };
   return (
     <NavLink
-      className={({isActive})=>{return isActive? "tabButtonActive" : "tabButton"}}
+      className={({ isActive }) => { return isActive ? "tabButtonActive" : "tabButton" }}
       to={`/${name.toLowerCase()}`}
     >
       {renderBody()}
@@ -43,7 +38,7 @@ const Tab = ({ name, page, currPage }: ButtonProps) => {
 
 const Tabs = ({ name, page, currPage }: ButtonProps) => {
   return (
-    <div className='navbar'>
+    <div className='tabs'>
       <Tab name='Chats' page={0} currPage={currPage} />
       <Tab name='Questionnaire' page={1} currPage={currPage} />
       <Tab name='Summary' page={2} currPage={currPage} />
@@ -57,13 +52,14 @@ const Homepage = () => {
     isOnPage(page);
   };
 
-  
-
   return (
-    <div className="contentContainer">
-      <Tabs name='Chatbot' page={onPage} currPage={onPage} />
-      <div className="blueBox">
-        <Outlet/>
+    <div className="mainContainer">
+      <Navbar />
+      <div className='contentContainer'>
+        <Tabs name='Chatbot' page={onPage} currPage={onPage} />
+        <div className="blueBox">
+          <Outlet />
+        </div>
       </div>
     </div>
   );

@@ -20,7 +20,7 @@ const Sidebar = () => {
 
   useEffect(() => {
     const fetchChats = async () => {
-      fetch("http://192.168.11.79:8000/get-chats")
+      fetch("http://localhost:8000/get-chats")
       .then((response) => response.json())
       .then((data) => {
         setChats(data);
